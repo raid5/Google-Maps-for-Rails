@@ -8,6 +8,7 @@ Gmaps4Rails.markers_conf.clusterer_gridSize = 50;
 Gmaps4Rails.markers_conf.clusterer_maxZoom = 5;
 Gmaps4Rails.markers_conf.custom_cluster_pictures = null;
 Gmaps4Rails.markers_conf.custom_infowindow_class = null;
+Gmaps4Rails.markers_conf.custom_infowindow_trigger = 'click';
 
 //Polygon Styling
 Gmaps4Rails.polygons_conf = {        // default style for polygons
@@ -233,7 +234,7 @@ Gmaps4Rails.createInfoWindow = function(marker_container){
       boxText.setAttribute("class", this.markers_conf.custom_infowindow_class); //to customize
       boxText.innerHTML = marker_container.description;	
       info_window = new InfoBox(Gmaps4Rails.infobox(boxText));
-      google.maps.event.addListener(marker_container.serviceObject, 'click', this.openInfoWindow(info_window, marker_container.serviceObject));
+      google.maps.event.addListener(marker_container.serviceObject, this.markers_conf.custom_infowindow_trigger, this.openInfoWindow(info_window, marker_container.serviceObject));
     }
   }
 };
